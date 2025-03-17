@@ -1,0 +1,3 @@
+{
+    "database_url": "postgres://postgresuser:postgrespasswordr@localhost:5432/demo?sslmode=disable"
+}
