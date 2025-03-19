@@ -10,7 +10,7 @@ import (
 
 // AirportRepository интерфейс для работы с пользователями
 type AirportRepository interface {
-	GetAllAirports() ([]models.Airport, error)
+	GetAllAirports() ([]*models.Airport, error)
 }
 
 type postgresAirportRepository struct {
@@ -30,9 +30,9 @@ func (repo *postgresAirportRepository) GetAllAirports() ([]models.Airport, error
 	}
 	defer rows.Close()
 
-	var airports []models.Airport
+	var airports []*models.Airport
 	for rows.Next() {
-		a := models.Airport{}
+		a := new(models.Airport)
 		if err := rows.Scan(&a.Code, &a.Name, &a.City, &a.Longtitude, &a.Latitude, &a.Timezone); err != nil {
 			return nil, fmt.Errorf("error scanning row: %w", err)
 		}
