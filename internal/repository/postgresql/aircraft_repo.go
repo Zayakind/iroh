@@ -15,7 +15,7 @@ import (
 // }
 
 type AircraftRepository interface {
-	GetAllAircrafts() ([]*models.Aircraft, error)
+	GetAllAircrafts() ([]models.Aircraft, error)
 }
 
 type postgresAircraftRepository struct {
@@ -27,16 +27,16 @@ func NewAicraftRepository(db *sql.DB) AircraftRepository {
 	return &postgresAircraftRepository{db: db}
 }
 
-func (repo *postgresAircraftRepository) GetAllAircrafts() ([]*models.Aircraft, error) {
+func (repo *postgresAircraftRepository) GetAllAircrafts() ([]models.Aircraft, error) {
 	rows, err := repo.db.Query("SELECT a.aircraft_code, a.model, a.range FROM bookings.aircrafts a")
 	if err != nil {
 		return nil, fmt.Errorf("error executing query: %w", err)
 	}
 	defer rows.Close()
 
-	var aircrafts []*models.Aircraft
+	var aircrafts []models.Aircraft
 	for rows.Next() {
-		a := new(models.Aircraft)
+		a := models.Aircraft{}
 		if err := rows.Scan(&a.Code, &a.Model, &a.Range); err != nil {
 			return nil, fmt.Errorf("error scanning row: %w", err)
 		}

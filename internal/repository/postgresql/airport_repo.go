@@ -23,7 +23,7 @@ func NewAirportRepository(db *sql.DB) *postgresAirportRepository {
 }
 
 // GetAllAirports реализует получение всех аэропортав из базы данных
-func (repo *postgresAirportRepository) GetAllAirports() ([]*models.Airport, error) {
+func (repo *postgresAirportRepository) GetAllAirports() ([]models.Airport, error) {
 	rows, err := repo.db.Query("SELECT a.airport_code, a.airport_name, a.city, a.latitude, a.longitude, a.timezone FROM bookings.airports a")
 	if err != nil {
 		return nil, fmt.Errorf("error executing query: %w", err)

@@ -13,6 +13,6 @@ func NewAircraftService(repo repository.AircraftRepository) *AircraftService {
 	return &AircraftService{repo: repo}
 }
 
-func (as *AircraftService) GetAllAircrafts() ([]*models.Aircraft, error) {
+func (as *AircraftService) GetAllAircrafts() ([]models.Aircraft, error) {
 	return as.repo.GetAllAircrafts()
 }

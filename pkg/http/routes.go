@@ -9,6 +9,6 @@ import (
 )
 
 func InitRoutes(router *mux.Router, airportSvc *service.AirportService, aircraftSvc *service.AircraftService) {
-	router.HandleFunc("/airports", GetAllAirportsHundlers(airportSvc)).Methods(http.MethodGet)
-	router.HandleFunc("/aircrafts", GetAllAircraftsHundlers(aircraftSvc)).Methods(http.MethodGet)
+	router.HandleFunc("/airports", GetAllAirportsHandler(airportSvc)).Methods(http.MethodGet)
+	router.HandleFunc("/aircrafts", GetAllAircraftsHandler(aircraftSvc)).Methods(http.MethodGet)
 }

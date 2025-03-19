@@ -18,7 +18,7 @@ func NewAirportrService(repo repository.AirportRepository) *AirportService {
 }
 
 // GetAllAirports возвращает список всех Аэропортов
-func (as *AirportService) GetAllAirports() ([]*models.Airport, error) {
+func (as *AirportService) GetAllAirports() ([]models.Airport, error) {
 	airports, err := as.repo.GetAllAirports()
 	if err != nil {
 		return nil, errors.New("failed to get all users")
